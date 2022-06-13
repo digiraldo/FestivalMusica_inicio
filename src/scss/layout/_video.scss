@@ -1,0 +1,46 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.video {
+    position: relative;
+    max-height: 70rem; // corta el background de gradient.
+    min-height: 50rem;
+    overflow: hidden;  // corta el video del tamaño del gradient.
+
+    .overlay {
+        position: absolute;
+        background: rgb(126,2,195);
+        background: linear-gradient(270deg, rgba(126,2,195,1) 0%, rgba(240,6,224,0.3) 100%);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column; // Para poder alinear verticalmente .contenido-video.
+        justify-content: center;
+    }
+
+    video {
+        width: auto;  // aquí auto ya que en el mq desktop esta al 100%.
+        display: block;
+        @include m.desktop {
+            width: 100%;
+        }
+    }
+}
+
+.contenido-video {
+    z-index: 1; // se va a mostrar este elemento como si fueran hojas: 0 no se selecciona, -1 queda atrás, 1 queda adelante
+    h2 {
+        color: v.$blanco;
+        font-size: 7rem;
+        margin: 0; // Los heading (h1 h2 h3 etc) tienen margen hacia abajo.
+    }
+    p {
+        background-color: v.$rosa;
+        display: inline-block; // El color de fondo sea igual al tamaño del texto.
+        padding: 1rem 2rem; // 1rem arriba y abajo, 2rem izquierda y derecha.
+        color: v.$blanco;
+        font-weight: 700; // Grosor de la letra.
+        font-size: 2.4rem;
+        margin: 0;
+    }
+}
